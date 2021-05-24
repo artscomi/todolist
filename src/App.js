@@ -1,18 +1,19 @@
 import "./App.scss";
-import Calendar from "./components/Icon/Calendar";
-import Charts from "./components/Icon/Charts";
-import Dashboard from "./components/Icon/Dashboard";
 import Plus from "./components/Icon/Plus";
-import Settings from "./components/Icon/Settings";
-import Teams from "./components/Icon/Teams";
+import { isMobile } from "react-device-detect";
+import ToolbarMobile from "./components/ToolbarMobile";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
-        <header className="header">
-          <h1>MyTrack</h1>
-        </header>
+        {isMobile && (
+          <div className="header">
+            <h1>MyTrack</h1>
+          </div>
+        )}
+
         <main>
           <div className="list-item list-item--add">
             <span className="u-margin-right-small">New task</span>
@@ -67,28 +68,7 @@ function App() {
             </ul>
           </div>
 
-          <footer className="toolbar">
-            <div className="toolbar__item">
-              <Dashboard />
-              <p>Dashboard</p>
-            </div>
-            <div className="toolbar__item">
-              <Calendar />
-              <p>Calendar</p>
-            </div>
-            <div className="toolbar__item">
-              <Teams />
-              <p>Teams</p>
-            </div>
-            <div className="toolbar__item">
-              <Charts />
-              <p>Charts</p>
-            </div>
-            <div className="toolbar__item">
-              <Settings />
-              <p>Settings</p>
-            </div>
-          </footer>
+          {isMobile ? <ToolbarMobile /> : <Sidebar />}
         </main>
       </div>
     </div>

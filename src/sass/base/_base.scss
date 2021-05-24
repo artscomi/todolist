@@ -43,4 +43,9 @@ body {
 
 .container {
     padding: 4rem 3.7rem;
+
+    @include respond(desktop) {
+        margin-left: 33rem;
+        padding: 7.4rem 15.5rem;
+    }
 }

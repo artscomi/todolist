@@ -76,8 +76,45 @@
   &--checked {
     background-color: $color-success;
     border-color: $color-success;
-    background: $color-success url('../../images/checked.svg') no-repeat center center;
+    background: $color-success url("../../images/checked.svg") no-repeat center
+      center;
     background-size: 12px;
+  }
+}
+
+.sidebar {
+  background-color: $color-primary-dark;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 1.6rem;
+  padding: 4rem 5.8rem;
+  min-width: 33rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    min-height: 4rem;
+    margin-bottom: 1rem;
+    padding: 1.2rem 2rem;
+    border-radius: $base-radius;
+
+    svg {
+      margin-right: 1rem;
+    }
+
+    &--selected {
+      background-color: $color-primary-darker;
+      color: $color-white;
+    }
+
+    &--last {
+      margin-top: auto;
+    }
   }
 }
 
