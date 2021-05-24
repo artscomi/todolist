@@ -1,17 +1,19 @@
 import "./App.scss";
 import Plus from "./components/Icon/Plus";
-import { isMobile } from "react-device-detect";
 import ToolbarMobile from "./components/ToolbarMobile";
 import Sidebar from "./components/Sidebar";
+import useMediaQuery from "hooks/useMediaQueries";
 
 function App() {
+  let isDesktop = useMediaQuery("(min-width: 75rem)");
+  
   return (
     <div className="App">
       <div className="container">
-        {isMobile && (
-          <div className="header">
+        {!isDesktop && (
+          <header className="header">
             <h1>MyTrack</h1>
-          </div>
+          </header>
         )}
 
         <main>
@@ -68,7 +70,7 @@ function App() {
             </ul>
           </div>
 
-          {isMobile ? <ToolbarMobile /> : <Sidebar />}
+          {isDesktop ? <Sidebar /> : <ToolbarMobile />  }
         </main>
       </div>
     </div>
