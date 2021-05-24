@@ -3,10 +3,11 @@ import Plus from "./components/Icon/Plus";
 import ToolbarMobile from "./components/ToolbarMobile";
 import Sidebar from "./components/Sidebar";
 import useMediaQuery from "hooks/useMediaQueries";
+import NewTaskDesktop from 'components/NewTaskDesktop'
 
 function App() {
   let isDesktop = useMediaQuery("(min-width: 75rem)");
-  
+
   return (
     <div className="App">
       <div className="container">
@@ -17,10 +18,15 @@ function App() {
         )}
 
         <main>
-          <div className="list-item list-item--add">
-            <span className="u-margin-right-small">New task</span>
-            <Plus />
-          </div>
+          {isDesktop ? (
+           
+            <NewTaskDesktop />
+          ) : (
+            <div className="list-item list-item--add">
+              <span className="u-margin-right-small">New task</span>
+              <Plus />
+            </div>
+          )}
 
           <div className="list">
             <p className="list-title">
@@ -70,7 +76,7 @@ function App() {
             </ul>
           </div>
 
-          {isDesktop ? <Sidebar /> : <ToolbarMobile />  }
+          {isDesktop ? <Sidebar /> : <ToolbarMobile />}
         </main>
       </div>
     </div>

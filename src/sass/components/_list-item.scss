@@ -135,3 +135,89 @@
     text-align: center;
   }
 }
+
+.new-task {
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__button {
+    text-transform: uppercase;
+    min-height: 4rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $color-primary;
+    color: $color-tertiary;
+    width: 9rem;
+    border: 0;
+    border-radius: 1rem;
+  }
+
+  &__label {
+    display: block;
+    padding-bottom: 1rem;
+  }
+
+  &__input {
+    border-radius: $base-radius;
+    background-color: $color-primary-dark;
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    height: 4rem;
+    width: 100%;
+    border: 0;
+    margin-bottom: 4rem;
+    color: $color-white;
+
+    &::placeholder {
+      color: $color-tertiary;
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &__bg {
+    background-color: $color-primary-darker;
+    width: 6rem;
+    height: 3.2rem;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__circle {
+    background-color: $color-tertiary;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    transform: translateX(.4rem);
+
+    &--active {
+      transition: transform 0.3s ease;
+      transform: translateX(calc(100% + .2rem));
+    }
+  }
+
+  &__label {
+    margin-right: 2rem;
+  }
+
+  &--desktop {
+    position: absolute;
+    right: 16rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
