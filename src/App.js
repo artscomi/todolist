@@ -1,7 +1,6 @@
 import "./App.scss";
 import Calendar from "./components/Icon/Calendar";
 import Charts from "./components/Icon/Charts";
-import Checked from "./components/Icon/Checked";
 import Dashboard from "./components/Icon/Dashboard";
 import Plus from "./components/Icon/Plus";
 import Settings from "./components/Icon/Settings";
