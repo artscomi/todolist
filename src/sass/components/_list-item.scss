@@ -1,0 +1,33 @@
+.list-title {
+  padding-bottom: 1.5rem;
+}
+
+.list-item {
+  border-radius: $base-radius;
+  background-color: $color-primary-dark;
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--add {
+    font-weight: 500;
+    margin-bottom: 4rem;
+  }
+
+  &--list {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+  }
+}
+.counter-circle {
+  border-radius: 100%;
+  color: $color-primary;
+  display: inline-flex;
+  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-secondary-light;
+  height: 2rem;
+  width: 2rem;
+}

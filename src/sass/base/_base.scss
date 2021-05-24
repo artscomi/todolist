@@ -24,7 +24,11 @@ html {
 }
 
 body {
-    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: $color-secondary-light;
 }
 
 ::selection {
@@ -33,6 +37,10 @@ body {
 }
 
 .App {
-    padding: 4rem 3.7rem;
     background: $color-primary;
+    min-height: 100vh;
+}
+
+.container {
+    padding: 4rem 3.7rem;
 }
