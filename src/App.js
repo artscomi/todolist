@@ -21,17 +21,20 @@ function App() {
             </p>
 
             <ul>
-              <li class="list-item list-item--list">
-                <span>New design system: brainstorming</span>
-                <i class="far fa-trash-alt delete"></i>
+              <li className="list-item list-item--list">
+                <span className="checkbox"></span>
+                <span className="list-item__circle list-item__circle--red"></span>
+                <span className="list-item__label">
+                  New design system: brainstorming
+                </span>
               </li>
-              <li class="list-item list-item--list">
-                <span>New design system: brainstorming</span>
-                <i class="far fa-trash-alt delete"></i>
-              </li>
-              <li class="list-item list-item--list">
-                <span>New design system: brainstorming</span>
-                <i class="far fa-trash-alt delete"></i>
+
+              <li className="list-item list-item--list">
+                <span className="checkbox"></span>
+                <span className="list-item__circle list-item__circle--blue"></span>
+                <span className="list-item__label">
+                  New design system: brainstorming
+                </span>
               </li>
             </ul>
           </div>
