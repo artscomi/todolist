@@ -26,6 +26,14 @@ function App() {
     setToDoListCompleted(mapped.filter((task) => task.complete === true));
   };
 
+  const handleDelete = (id) => {
+    setToDoList(
+      toDoList.filter((todo) => {
+        return todo.id !== id;
+      })
+    );
+  };
+
   const addTask = (newTask, highPriority) => {
     let copy = [...toDoList];
     copy = [
@@ -69,7 +77,7 @@ function App() {
               <span className="counter-circle">{toDoList.length}</span>
             </p>
 
-            <ToDoList toDoList={toDoList} handleComplete={handleComplete} />
+            <ToDoList toDoList={toDoList} handleComplete={handleComplete} handleDelete={handleDelete} />
           </div>
 
           <div className="list">

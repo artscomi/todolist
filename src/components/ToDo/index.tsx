@@ -1,3 +1,4 @@
+import Trash from "components/Icon/Trash";
 import React from "react";
 
 export type Todo = {
@@ -10,16 +11,16 @@ export type Todo = {
 type Props = {
   todo: Todo;
   handleComplete?: (value: string) => {};
+  handleDelete?: (value: string) => {};
 };
 
-const ToDo: React.FC<Props> = ({ todo, handleComplete }) => {
+const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
+  
+
   return (
-    <li
-      className="list-item list-item--list"
-      id={todo.id}
-      onClick={() => handleComplete && handleComplete(todo.id)}
-    >
+    <li className="list-item list-item--list" id={todo.id}>
       <span
+        onClick={() => handleComplete && handleComplete(todo.id)}
         className={`checkbox ${todo.complete ? "checkbox--checked" : ""}`}
       ></span>
       <span
@@ -34,6 +35,19 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete }) => {
       >
         {todo.task}
       </span>
+      {!todo.complete && (
+        <div
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => {
+            e.key === "Enter" && handleDelete && handleDelete(todo.id);
+          }}
+          onClick={() => handleDelete && handleDelete(todo.id)}
+          className="list-item__trash"
+        >
+          <Trash />
+        </div>
+      )}
     </li>
   );
 };
