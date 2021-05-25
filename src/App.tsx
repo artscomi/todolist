@@ -4,7 +4,7 @@ import ToolbarMobile from "./components/ToolbarMobile";
 import Sidebar from "./components/Sidebar";
 import useMediaQuery from "hooks/useMediaQueries";
 import NewTaskDesktop from "components/NewTaskDesktop";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ToDoList from "components/ToDoList";
 import { Todo } from "components/ToDo";
 
@@ -12,11 +12,34 @@ function App() {
   const [toDoList, setToDoList] = useState<Array<any>>([]);
   const [toDoListCompleted, setToDoListCompleted] = useState<Array<any>>([]);
   let isDesktop = useMediaQuery("(min-width: 75rem)");
+  const appContainer = useRef<HTMLDivElement>(null);
 
-  const addTask = (newTask: string, highPriority: boolean) => {
-    let copy: Array<any> = [...toDoList];
-    copy = [
-      ...copy,
+  const handleMouseDown = (e: any) => {
+    if (appContainer.current) {
+      appContainer.current.classList.add("mousedown");
+    }
+  };
+  const handleKeyDown = (e: any) => {
+    if (appContainer.current) {
+      if (e.key === "Enter" || e.key === "Tab") {
+        appContainer.current.classList.remove("mousedown");
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const addNewTask = (newTask: string, highPriority: boolean) => {
+    let toDoListCopy: Array<any> = [
+      ...toDoList,
       {
         id: toDoList.length + 1,
         task: newTask,
@@ -25,10 +48,10 @@ function App() {
       },
     ];
 
-    const copySorted: Array<Todo> = copy.sort(
+    const toDoListCopySorted: Array<Todo> = toDoListCopy.sort(
       (a, b) => b.priority - a.priority || b.id - a.id
     );
-    setToDoList(copySorted);
+    setToDoList(toDoListCopySorted);
   };
 
   const handleComplete = (id: string) => {
@@ -36,11 +59,7 @@ function App() {
     //   return task.id === id && { ...task, complete: true };
     // });
 
-    setToDoList(
-      toDoList.filter((todo: any) => {
-        return todo.id !== id;
-      })
-    );
+    handleDelete(id);
 
     setToDoListCompleted([]);
   };
@@ -54,7 +73,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" ref={appContainer}>
       <div className="container">
         {!isDesktop && (
           <header className="header">
@@ -64,7 +83,7 @@ function App() {
 
         <main>
           {isDesktop ? (
-            <NewTaskDesktop addTask={addTask} />
+            <NewTaskDesktop addNewTask={addNewTask} />
           ) : (
             <div className="list-item list-item--add">
               <span className="u-margin-right-small">New task</span>

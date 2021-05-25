@@ -1,51 +1,63 @@
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove outline on mousedown events */
+.mousedown *:focus {
+  outline: 0;
+}
+
+/* increase spacing in outline */
+*:focus {
+  outline-offset: 5px;
 }
 
 html {
-    // This defines what 1rem is
-    font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
+  // This defines what 1rem is
+  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
 
-    @include respond(tab-land) { // width < 1200?
-        font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
-    }
+  @include respond(tab-land) {
+    // width < 1200?
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 50%
+  }
 
-    @include respond(tab-port) { // width < 900?
-        font-size: 50%; //1 rem = 8px, 8/16 = 50%
-    }
-    
-    @include respond(big-desktop) {
-        font-size: 75%; //1rem = 12, 12/16
-    }
+  @include respond(tab-port) {
+    // width < 900?
+    font-size: 50%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; //1rem = 12, 12/16
+  }
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 2rem;
-    color: $color-secondary-light;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 2rem;
+  color: $color-secondary-light;
 }
 
 ::selection {
-    background-color: $color-primary;
-    color: $color-white;
+  background-color: $color-primary;
+  color: $color-white;
 }
 
 .App {
-    background: $color-primary;
-    min-height: 100vh;
+  background: $color-primary;
+  min-height: 100vh;
 }
 
 .container {
-    padding: 4rem 3.7rem;
+  padding: 4rem 3.7rem;
 
-    @include respond(desktop) {
-        margin-left: 33rem;
-        padding: 7.4rem 15.5rem;
-    }
+  @include respond(desktop) {
+    margin-left: 33rem;
+    padding: 7.4rem 15.5rem;
+  }
 }

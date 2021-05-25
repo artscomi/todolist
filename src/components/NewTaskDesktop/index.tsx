@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import PriorityToggle from "components/PriorityToggle";
 
 type Props = {
-  addTask: (newTask: string, isHighPriority: boolean) => void;
+  addNewTask: (newTask: string, isHighPriority: boolean) => void;
 };
 
-const NewTaskDesktop: React.FC<Props> = ({ addTask }) => {
+const NewTaskDesktop: React.FC<Props> = ({ addNewTask }) => {
   const [newTask, setNewTask] = useState("");
   const [isHighPriority, setHighPriority] = useState(false);
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (newTask) {
-      addTask(newTask, isHighPriority);
+      addNewTask(newTask, isHighPriority);
     }
     setNewTask("");
     setHighPriority(false);
@@ -22,7 +22,7 @@ const NewTaskDesktop: React.FC<Props> = ({ addTask }) => {
   };
 
   const handleChange = (e: React.BaseSyntheticEvent) => {
-    setNewTask(e.currentTarget.value);
+    setNewTask(e.target.value);
   };
 
   return (
