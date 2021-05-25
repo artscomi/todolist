@@ -24,18 +24,24 @@ function App() {
     );
 
     setToDoListCompleted(mapped.filter((task) => task.complete === true));
-
   };
 
   const addTask = (newTask, highPriority) => {
     let copy = [...toDoList];
     copy = [
       ...copy,
-      { id: toDoList.length + 1, task: newTask, priority: highPriority, complete: false },
+      {
+        id: toDoList.length + 1,
+        task: newTask,
+        priority: highPriority,
+        complete: false,
+      },
     ];
-    setToDoList(copy);
 
-    console.log(copy)
+    const copySorted = copy.sort(
+      (a, b) => b.priority - a.priority || b.id - a.id
+    );
+    setToDoList(copySorted);
   };
 
   return (
