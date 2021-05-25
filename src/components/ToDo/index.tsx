@@ -3,6 +3,7 @@ import React from "react";
 export type Todo = {
   id: string;
   complete: boolean;
+  priority: boolean;
   task: string;
 };
 
@@ -21,7 +22,11 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete }) => {
       <span
         className={`checkbox ${todo.complete ? "checkbox--checked" : ""}`}
       ></span>
-      <span className="list-item__circle list-item__circle--red"></span>
+      <span
+        className={`list-item__circle ${
+          todo.priority ? "list-item__circle--red" : "list-item__circle--blue"
+        }`}
+      ></span>
       <span
         className={`list-item__label ${
           todo.complete ? "list-item__label--done" : ""

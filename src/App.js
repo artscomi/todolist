@@ -14,23 +14,28 @@ function App() {
 
   const handleComplete = (id) => {
     let mapped = toDoList.map((task) => {
-      return task.id === id ? { ...task, complete: true } : { ...task };
+      return task.id === id && { ...task, complete: true };
     });
+
     setToDoList(
-      mapped.filter((todo) => {
+      toDoList.filter((todo) => {
         return todo.id !== id;
       })
     );
-    setToDoListCompleted(mapped);
+
+    setToDoListCompleted(mapped.filter((task) => task.complete === true));
+
   };
 
-  const addTask = (newTask) => {
+  const addTask = (newTask, highPriority) => {
     let copy = [...toDoList];
     copy = [
       ...copy,
-      { id: toDoList.length + 1, task: newTask, complete: false },
+      { id: toDoList.length + 1, task: newTask, priority: highPriority, complete: false },
     ];
     setToDoList(copy);
+
+    console.log(copy)
   };
 
   return (
@@ -67,9 +72,7 @@ function App() {
               <span className="counter-circle">{toDoListCompleted.length}</span>
             </p>
 
-            <ToDoList
-              toDoList={toDoListCompleted}
-            />
+            <ToDoList toDoList={toDoListCompleted} />
           </div>
 
           {isDesktop ? <Sidebar /> : <ToolbarMobile />}

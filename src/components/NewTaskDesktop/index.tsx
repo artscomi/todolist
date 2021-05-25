@@ -7,13 +7,18 @@ type Props = {
 
 const NewTaskDesktop: React.FC<Props> = ({ addTask }) => {
   const [newTask, setNewTask] = useState("");
-
+  const [isHighPriority, setHighPriority] = useState(false)
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (newTask) {
-      addTask(newTask);
+      addTask(newTask, isHighPriority);
     }
     setNewTask("");
+    setHighPriority(false);
+  };
+
+  const handleHighPriority = (highPriority: boolean) => {
+    setHighPriority(!highPriority);
   };
 
   const handleChange = (e: React.BaseSyntheticEvent) => {
@@ -32,9 +37,15 @@ const NewTaskDesktop: React.FC<Props> = ({ addTask }) => {
           placeholder="insert task title..."
           onChange={handleChange}
         />
-        <button className="new-task__button">Add</button>
+        <button
+          className={`new-task__button ${
+            newTask ? "new-task__button--active" : ""
+          }`}
+        >
+          Add
+        </button>
         <div className="toggle--desktop">
-          <PriorityToggle />
+          <PriorityToggle handleHighPriority={handleHighPriority} isHighPriority={isHighPriority} />
         </div>
       </div>
     </form>

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-const PriorityToggle = () => {
-  const [isActive, setIsActive] = useState(false);
-  const toggle = () => setIsActive(!isActive);
+type Props = {
+  handleHighPriority: any;
+  isHighPriority: boolean
+};
+
+const PriorityToggle: React.FC<Props> = ({ handleHighPriority, isHighPriority }) => {
+  
 
   return (
     <div
@@ -12,10 +16,10 @@ const PriorityToggle = () => {
       tabIndex={0}
       onKeyPress={(e) => {
         if (e.key === "Enter") {
-          toggle();
+          handleHighPriority();
         }
       }}
-      onClick={toggle}
+      onClick={() => handleHighPriority()}
     >
       <span
         className="toggle__label"
@@ -26,7 +30,7 @@ const PriorityToggle = () => {
       </span>
       <div className="toggle__bg">
         <div
-          className={`toggle__circle ${isActive && "toggle__circle--active"}`}
+          className={`toggle__circle ${isHighPriority && "toggle__circle--active"}`}
         />
       </div>
     </div>
