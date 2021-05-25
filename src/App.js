@@ -3,10 +3,35 @@ import Plus from "./components/Icon/Plus";
 import ToolbarMobile from "./components/ToolbarMobile";
 import Sidebar from "./components/Sidebar";
 import useMediaQuery from "hooks/useMediaQueries";
-import NewTaskDesktop from 'components/NewTaskDesktop'
+import NewTaskDesktop from "components/NewTaskDesktop";
+import { useState } from "react";
+import ToDoList from "components/ToDoList";
 
 function App() {
+  const [toDoList, setToDoList] = useState([]);
+  const [toDoListCompleted, setToDoListCompleted] = useState([]);
   let isDesktop = useMediaQuery("(min-width: 75rem)");
+
+  const handleComplete = (id) => {
+    let mapped = toDoList.map((task) => {
+      return task.id === id ? { ...task, complete: true } : { ...task };
+    });
+    setToDoList(
+      mapped.filter((todo) => {
+        return todo.id !== id;
+      })
+    );
+    setToDoListCompleted(mapped);
+  };
+
+  const addTask = (newTask) => {
+    let copy = [...toDoList];
+    copy = [
+      ...copy,
+      { id: toDoList.length + 1, task: newTask, complete: false },
+    ];
+    setToDoList(copy);
+  };
 
   return (
     <div className="App">
@@ -19,8 +44,7 @@ function App() {
 
         <main>
           {isDesktop ? (
-           
-            <NewTaskDesktop />
+            <NewTaskDesktop addTask={addTask} />
           ) : (
             <div className="list-item list-item--add">
               <span className="u-margin-right-small">New task</span>
@@ -31,49 +55,21 @@ function App() {
           <div className="list">
             <p className="list-title">
               <span className="u-margin-right-small">In progress</span>
-              <span className="counter-circle">5</span>
+              <span className="counter-circle">{toDoList.length}</span>
             </p>
 
-            <ul>
-              <li className="list-item list-item--list">
-                <span className="checkbox"></span>
-                <span className="list-item__circle list-item__circle--red"></span>
-                <span className="list-item__label">
-                  New design system: brainstorming
-                </span>
-              </li>
-
-              <li className="list-item list-item--list">
-                <span className="checkbox"></span>
-                <span className="list-item__circle list-item__circle--blue"></span>
-                <span className="list-item__label">
-                  New design system: brainstorming
-                </span>
-              </li>
-            </ul>
+            <ToDoList toDoList={toDoList} handleComplete={handleComplete} />
           </div>
 
           <div className="list">
             <p className="list-title">
               <span className="u-margin-right-small">Done</span>
-              <span className="counter-circle">4</span>
+              <span className="counter-circle">{toDoListCompleted.length}</span>
             </p>
 
-            <ul>
-              <li className="list-item list-item--list">
-                <span className="checkbox"></span>
-                <span className="list-item__circle list-item__circle--red"></span>
-                <span className="list-item__label">Replace broken SEO</span>
-              </li>
-
-              <li className="list-item list-item--list">
-                <span className="checkbox checkbox--checked"></span>
-                <span className="list-item__circle list-item__circle--red"></span>
-                <span className="list-item__label list-item__label--done">
-                  New design system: brainstorming
-                </span>
-              </li>
-            </ul>
+            <ToDoList
+              toDoList={toDoListCompleted}
+            />
           </div>
 
           {isDesktop ? <Sidebar /> : <ToolbarMobile />}

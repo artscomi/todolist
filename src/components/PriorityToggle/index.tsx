@@ -1,14 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 
 const PriorityToggle = () => {
   const [isActive, setIsActive] = useState(false);
-  const componentMount = useRef(false);
-
   const toggle = () => setIsActive(!isActive);
-
-  useEffect(() => {
-    componentMount.current = true;
-  }, []);
 
   return (
     <div
