@@ -6,36 +6,15 @@ import useMediaQuery from "hooks/useMediaQueries";
 import NewTaskDesktop from "components/NewTaskDesktop";
 import { useState } from "react";
 import ToDoList from "components/ToDoList";
+import { Todo } from "components/ToDo";
 
 function App() {
-  const [toDoList, setToDoList] = useState([]);
-  const [toDoListCompleted, setToDoListCompleted] = useState([]);
+  const [toDoList, setToDoList] = useState<Array<any>>([]);
+  const [toDoListCompleted, setToDoListCompleted] = useState<Array<any>>([]);
   let isDesktop = useMediaQuery("(min-width: 75rem)");
 
-  const handleComplete = (id) => {
-    let mapped = toDoList.map((task) => {
-      return task.id === id && { ...task, complete: true };
-    });
-
-    setToDoList(
-      toDoList.filter((todo) => {
-        return todo.id !== id;
-      })
-    );
-
-    setToDoListCompleted(mapped.filter((task) => task.complete === true));
-  };
-
-  const handleDelete = (id) => {
-    setToDoList(
-      toDoList.filter((todo) => {
-        return todo.id !== id;
-      })
-    );
-  };
-
-  const addTask = (newTask, highPriority) => {
-    let copy = [...toDoList];
+  const addTask = (newTask: string, highPriority: boolean) => {
+    let copy: Array<any> = [...toDoList];
     copy = [
       ...copy,
       {
@@ -46,10 +25,32 @@ function App() {
       },
     ];
 
-    const copySorted = copy.sort(
+    const copySorted: Array<Todo> = copy.sort(
       (a, b) => b.priority - a.priority || b.id - a.id
     );
     setToDoList(copySorted);
+  };
+
+  const handleComplete = (id: string) => {
+    // const mapped = toDoList.map((task: Todo) => {
+    //   return task.id === id && { ...task, complete: true };
+    // });
+
+    setToDoList(
+      toDoList.filter((todo: any) => {
+        return todo.id !== id;
+      })
+    );
+
+    setToDoListCompleted([]);
+  };
+
+  const handleDelete = (id: string) => {
+    setToDoList(
+      toDoList.filter((todo: any) => {
+        return todo.id !== id;
+      })
+    );
   };
 
   return (
@@ -77,7 +78,11 @@ function App() {
               <span className="counter-circle">{toDoList.length}</span>
             </p>
 
-            <ToDoList toDoList={toDoList} handleComplete={handleComplete} handleDelete={handleDelete} />
+            <ToDoList
+              toDoList={toDoList}
+              handleComplete={handleComplete}
+              handleDelete={handleDelete}
+            />
           </div>
 
           <div className="list">

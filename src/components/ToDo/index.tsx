@@ -10,15 +10,15 @@ export type Todo = {
 
 type Props = {
   todo: Todo;
-  handleComplete?: (value: string) => {};
-  handleDelete?: (value: string) => {};
+  handleComplete?: (id: string) => void;
+  handleDelete?: (id: string) => void;
 };
 
 const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
   
 
   return (
-    <li className="list-item list-item--list" id={todo.id}>
+    <li className="list-item list-item--list">
       <span
         onClick={() => handleComplete && handleComplete(todo.id)}
         className={`checkbox ${todo.complete ? "checkbox--checked" : ""}`}

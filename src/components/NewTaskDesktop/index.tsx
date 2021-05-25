@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PriorityToggle from "components/PriorityToggle";
 
 type Props = {
-  addTask: React.VoidFunctionComponent;
+  addTask: (newTask: string, isHighPriority: boolean) => void;
 };
 
 const NewTaskDesktop: React.FC<Props> = ({ addTask }) => {
