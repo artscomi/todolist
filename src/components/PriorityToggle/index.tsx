@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  handleHighPriority: any;
+  handleHighPriority: VoidFunction;
   isHighPriority: boolean
 };
 

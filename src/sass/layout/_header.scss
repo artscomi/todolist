@@ -3,7 +3,7 @@
     font-weight: bold;
     padding-bottom: 4rem;
 
-    @include respond(desktop) {
+    @include respond(tab-land) {
         padding-bottom: 10rem;
         color: $color-white;
     }

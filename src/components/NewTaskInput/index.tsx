@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import PriorityToggle from "components/PriorityToggle";
+import useMediaQuery from "hooks/useMediaQueries";
 
 type Props = {
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
+  closeModal?: VoidFunction;
 };
 
-const NewTaskDesktop: React.FC<Props> = ({ addNewTask }) => {
+const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
   const [newTask, setNewTask] = useState("");
   const [isHighPriority, setHighPriority] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 56.25em)");
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (newTask) {
@@ -34,25 +37,28 @@ const NewTaskDesktop: React.FC<Props> = ({ addNewTask }) => {
           type="text"
           name="newTask"
           className="new-task__input"
-          placeholder="insert task title..."
+          placeholder="Insert task title..."
           onChange={handleChange}
         />
-        <div className="toggle--desktop">
-          <PriorityToggle
-            handleHighPriority={handleHighPriority}
-            isHighPriority={isHighPriority}
-          />
+        <div className="new-task__tools">
+          <div className="toggle">
+            <PriorityToggle
+              handleHighPriority={handleHighPriority}
+              isHighPriority={isHighPriority}
+            />
+          </div>
+          <button
+            onClick={!isDesktop ? closeModal : undefined}
+            className={`new-task__button ${
+              newTask ? "new-task__button--active" : ""
+            }`}
+          >
+            Add
+          </button>
         </div>
-        <button
-          className={`new-task__button ${
-            newTask ? "new-task__button--active" : ""
-          }`}
-        >
-          Add
-        </button>
       </div>
     </form>
   );
 };
 
-export default NewTaskDesktop;
+export default NewTaskInput;
