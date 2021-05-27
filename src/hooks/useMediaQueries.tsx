@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-const useMediaQuery = (query) =>  {
+const useMediaQuery = (breakpoint: string) => {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia(query);
+    const media = window.matchMedia(breakpoint);
     if (media.matches !== matches) {
       setMatches(media.matches);
     }
@@ -13,9 +13,9 @@ const useMediaQuery = (query) =>  {
     };
     media.addListener(listener);
     return () => media.removeListener(listener);
-  }, [matches, query]);
+  }, [matches, breakpoint]);
 
   return matches;
-}
+};
 
-export default useMediaQuery
+export default useMediaQuery;
