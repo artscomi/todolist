@@ -1,5 +1,6 @@
 import Trash from "components/Icon/Trash";
-import React, { useState } from "react";
+import useMediaQuery from "hooks/useMediaQueries";
+import React from "react";
 
 export type Todo = {
   id: string;
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
+  const isDesktop = useMediaQuery("(min-width: 56.25em)");
+  
   return (
     <li tabIndex={0} className="list-item list-item--list">
       <input
@@ -37,7 +40,7 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
       >
         {todo.task}
       </label>
-      {!todo.complete && (
+      {isDesktop && (
         <div
           tabIndex={0}
           role="button"

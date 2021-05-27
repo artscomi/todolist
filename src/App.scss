@@ -6,7 +6,16 @@
 @import "./sass/base/typography";
 @import "./sass/base/utilities";
 
-@import "./sass/layout/header";
+.header {
+  font-size: 2.4rem;
+  font-weight: bold;
+  padding-bottom: 4rem;
+
+  @include respond(tab-land) {
+    padding-bottom: 10rem;
+    color: $color-white;
+  }
+}
 
 .list {
   padding-bottom: 3rem;
@@ -37,14 +46,18 @@
     transition: background-image 1s ease;
     display: flex;
 
-    .list-item__trash {
-      transition: opacity 0.3s ease;
-      opacity: 0;
-    }
+    @include respond(tab-land) {
+      max-width: 80rem;
 
-    &:hover {
+      &:hover {
+        .list-item__trash {
+          opacity: 1;
+        }
+      }
+
       .list-item__trash {
-        opacity: 1;
+        transition: opacity 0.3s ease;
+        opacity: 0;
       }
     }
   }
@@ -61,6 +74,7 @@
     &:focus {
       opacity: 1;
     }
+
   }
 
   &__circle {
@@ -170,7 +184,7 @@
 
 .toolbar {
   background-color: $color-primary-dark;
-  height: 6rem;
+  min-height: 6rem;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -180,6 +194,7 @@
   align-items: center;
   font-size: 0.8rem;
   line-height: 1.8;
+  padding: 1rem;
 
   &__item {
     text-align: center;
@@ -198,6 +213,7 @@
       display: block;
       height: auto;
       padding: 0;
+      max-width: 80rem;
     }
   }
 
@@ -237,15 +253,20 @@
     }
   }
 
+  &__header {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid $color-border;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__label {
     display: block;
     font-size: 1.6rem;
-    padding: 2rem 2.5rem;
-    border-bottom: 1px solid $color-border;
-    
+
     @include respond(tab-land) {
-      display: block;
-      padding: 0 0 1rem 0;
+      padding-bottom: 1rem;
     }
   }
 
@@ -254,6 +275,7 @@
     border: 0;
     color: $color-white;
     padding-bottom: 10rem;
+    font-size: 1.8rem;
 
     &::placeholder {
       color: $color-tertiary;
@@ -274,7 +296,9 @@
       height: 4rem;
       width: 100%;
       margin-bottom: 4rem;
-      height: auto
+      height: auto;
+      font-size: 1.6rem;
+      padding-right: 40rem;
     }
   }
 }
@@ -336,7 +360,6 @@
 .modal {
   border-radius: $base-radius;
   background-color: $color-primary-dark;
-
   margin: 10rem 3.5rem;
 
   &__title {
@@ -344,4 +367,8 @@
     padding: 2rem 2.5rem;
     border-bottom: 1px solid $color-border;
   }
+}
+
+.icon-rotate {
+  transform: rotate(45deg);
 }

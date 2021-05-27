@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PriorityToggle from "components/PriorityToggle";
 import useMediaQuery from "hooks/useMediaQueries";
+import Plus from "components/Icon/Plus";
 
 type Props = {
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
@@ -30,7 +31,17 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
 
   return (
     <form className="new-task" onSubmit={handleSubmit}>
-      <label className="new-task__label">New task</label>
+      {isDesktop ? (
+        <label className="new-task__label">New task</label>
+      ) : (
+        <div className="new-task__header">
+          <label className="new-task__label">New task</label>
+          <div onClick={closeModal}>
+            <Plus className="icon-rotate" />
+          </div>
+        </div>
+      )}
+
       <div className="new-task__input-wrapper">
         <input
           value={newTask}

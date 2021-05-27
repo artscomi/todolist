@@ -58,6 +58,10 @@ body {
 
   @include respond(tab-land) {
     margin-left: 33rem;
+    padding: 7.4rem 3.7rem;
+  }
+
+  @include respond(desktop) {
     padding: 7.4rem 15.5rem;
   }
 }

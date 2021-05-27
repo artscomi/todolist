@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import ToDoList from "components/ToDoList";
 import { Todo } from "components/ToDo";
 import { AnimatePresence, motion } from "framer-motion";
-import Trash from "components/Icon/Trash";
 
 function App() {
   const [toDoList, setToDoList] = useState<Array<Todo>>([]);
@@ -124,7 +123,7 @@ function App() {
               <span className="counter-circle">{toDoListCompleted.length}</span>
             </p>
 
-            <ToDoList toDoList={toDoListCompleted} />
+            <ToDoList toDoList={toDoListCompleted} handleDelete={handleDelete}/>
           </div>
 
           {isDesktop ? <Sidebar /> : <ToolbarMobile />}
@@ -137,9 +136,6 @@ function App() {
                 className="overlay"
               >
                 <div className="modal">
-                  <div onClick={closeModal}>
-                    <Trash />
-                  </div>
                   <NewTaskInput
                     addNewTask={addNewTask}
                     closeModal={closeModal}
