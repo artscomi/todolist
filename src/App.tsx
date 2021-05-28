@@ -19,7 +19,7 @@ const App = () => {
   const appContainer = useRef<HTMLDivElement>(null);
   const toDoListInProgess = toDoList.filter((task: Todo) => !task.complete);
   const toDoListCompleted = toDoList.filter((task: Todo) => task.complete);
-  const { showModal } = React.useContext(ModalContext);
+  const { showModal, hideModal } = React.useContext(ModalContext);
 
   useKeyboardOrMouseEvent(appContainer);
 
@@ -27,11 +27,10 @@ const App = () => {
     showModal({
       component: ModalNewTask,
       modalProps: {
-        addNewTask
-      }
+        addNewTask,
+      },
     });
   };
-
 
   const addNewTask = (newTask: string, highPriority: boolean) => {
     const toDoListCopy: Array<Todo> = [
@@ -59,6 +58,7 @@ const App = () => {
     });
 
     setToDoList(toDoListCompletedCopy);
+    !isDesktop && hideModal();
   };
 
   const handleDelete = (id: string) => {
@@ -67,6 +67,7 @@ const App = () => {
         return todo.id !== id;
       })
     );
+    !isDesktop && hideModal();
   };
 
   return (

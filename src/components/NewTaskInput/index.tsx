@@ -61,8 +61,8 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
           </div>
           <button
             onClick={!isDesktop ? closeModal : undefined}
-            className={`new-task__button ${
-              newTask ? "new-task__button--active" : ""
+            className={`button ${
+              newTask ? "button--active" : ""
             }`}
           >
             Add

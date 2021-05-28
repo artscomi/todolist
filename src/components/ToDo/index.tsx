@@ -4,6 +4,7 @@ import React from "react";
 import { rawMq } from "utils/media-queries";
 import { ModalContext } from "react-multi-modal";
 import ModalDeleteOrComplete from "components/ModalDeleteOrCompleteTask";
+import PriorityCircle from "components/PriorityCircle";
 
 export type Todo = {
   id: string;
@@ -37,20 +38,17 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
     <li
       tabIndex={0}
       className="list-item list-item--list"
-      onClick={showModalDeleteOrComplete}
+      onClick={() => !isDesktop && showModalDeleteOrComplete()}
     >
       <input
         id="checkbox_id"
         type="checkbox"
-        onClick={() => handleComplete && handleComplete(todo.id)}
+        onClick={() => isDesktop && handleComplete && handleComplete(todo.id)}
         className={`checkbox ${todo.complete ? "checkbox--checked" : ""}`}
       />
 
-      <span
-        className={`list-item__circle ${
-          todo.priority ? "list-item__circle--red" : "list-item__circle--blue"
-        }`}
-      ></span>
+      <PriorityCircle task={todo} />
+
       <label
         htmlFor="checkbox_id"
         className={`list-item__label ${
