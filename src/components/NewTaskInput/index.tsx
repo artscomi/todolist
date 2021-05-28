@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PriorityToggle from "components/PriorityToggle";
 import useMediaQuery from "hooks/useMediaQueries";
 import Plus from "components/Icon/Plus";
+import { rawMq } from "utils/media-queries";
 
 type Props = {
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
@@ -11,7 +12,7 @@ type Props = {
 const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
   const [newTask, setNewTask] = useState("");
   const [isHighPriority, setHighPriority] = useState(false);
-  const isDesktop = useMediaQuery("(min-width: 56.25em)");
+  const isDesktop = useMediaQuery(rawMq.tabLand);
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (newTask) {

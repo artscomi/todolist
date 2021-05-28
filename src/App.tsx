@@ -3,33 +3,35 @@ import Plus from "./components/Icon/Plus";
 import ToolbarMobile from "./components/ToolbarMobile";
 import Sidebar from "./components/Sidebar";
 import useMediaQuery from "hooks/useMediaQueries";
+import useKeyboardOrMouseEvent from "hooks/useKeyboardOrMouseEvent";
 import NewTaskInput from "components/NewTaskInput";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ToDoList from "components/ToDoList";
 import { Todo } from "components/ToDo";
-import { AnimatePresence, motion } from "framer-motion";
+import { ModalContext, ModalRoot } from "react-multi-modal";
+import React from "react";
+import ModalNewTask from "components/ModalNewTask";
+import { rawMq } from "utils/media-queries";
 
-function App() {
+const App = () => {
   const [toDoList, setToDoList] = useState<Array<Todo>>([]);
-  const isDesktop = useMediaQuery("(min-width: 56.25em)");
+  const isDesktop = useMediaQuery(rawMq.tabLand);
   const appContainer = useRef<HTMLDivElement>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const toDoListInProgess = toDoList.filter((task: Todo) => !task.complete);
   const toDoListCompleted = toDoList.filter((task: Todo) => task.complete);
+  const { showModal } = React.useContext(ModalContext);
 
-  const handleMouseDown = () => {
-    if (appContainer.current) {
-      appContainer.current.classList.add("mousedown");
-    }
-  };
+  useKeyboardOrMouseEvent(appContainer);
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (appContainer.current) {
-      if (e.key === "Enter" || e.key === "Tab") {
-        appContainer.current.classList.remove("mousedown");
+  const showModalNewTask = () => {
+    showModal({
+      component: ModalNewTask,
+      modalProps: {
+        addNewTask
       }
-    }
+    });
   };
+
 
   const addNewTask = (newTask: string, highPriority: boolean) => {
     const toDoListCopy: Array<Todo> = [
@@ -67,24 +69,6 @@ function App() {
     );
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("mousedown", handleMouseDown);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
   return (
     <div className="App" ref={appContainer}>
       <div className="container">
@@ -98,7 +82,10 @@ function App() {
           {isDesktop ? (
             <NewTaskInput addNewTask={addNewTask} />
           ) : (
-            <div onClick={openModal} className="list-item list-item--add">
+            <div
+              onClick={showModalNewTask}
+              className="list-item list-item--add"
+            >
               <span className="u-margin-right-small">New task</span>
               <Plus />
             </div>
@@ -123,31 +110,18 @@ function App() {
               <span className="counter-circle">{toDoListCompleted.length}</span>
             </p>
 
-            <ToDoList toDoList={toDoListCompleted} handleDelete={handleDelete}/>
+            <ToDoList
+              toDoList={toDoListCompleted}
+              handleDelete={handleDelete}
+            />
           </div>
 
           {isDesktop ? <Sidebar /> : <ToolbarMobile />}
-          <AnimatePresence>
-            {isModalOpen && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="overlay"
-              >
-                <div className="modal">
-                  <NewTaskInput
-                    addNewTask={addNewTask}
-                    closeModal={closeModal}
-                  />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <ModalRoot />
         </main>
       </div>
     </div>
   );
-}
+};
 
 export default App;

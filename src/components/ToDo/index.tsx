@@ -1,6 +1,9 @@
 import Trash from "components/Icon/Trash";
 import useMediaQuery from "hooks/useMediaQueries";
 import React from "react";
+import { rawMq } from "utils/media-queries";
+import { ModalContext } from "react-multi-modal";
+import ModalDeleteOrComplete from "components/ModalDeleteOrCompleteTask";
 
 export type Todo = {
   id: string;
@@ -16,10 +19,26 @@ type Props = {
 };
 
 const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
-  const isDesktop = useMediaQuery("(min-width: 56.25em)");
-  
+  const isDesktop = useMediaQuery(rawMq.tabLand);
+  const { showModal } = React.useContext(ModalContext);
+
+  const showModalDeleteOrComplete = () => {
+    showModal({
+      component: ModalDeleteOrComplete,
+      modalProps: {
+        todo,
+        handleComplete,
+        handleDelete,
+      },
+    });
+  };
+
   return (
-    <li tabIndex={0} className="list-item list-item--list">
+    <li
+      tabIndex={0}
+      className="list-item list-item--list"
+      onClick={showModalDeleteOrComplete}
+    >
       <input
         id="checkbox_id"
         type="checkbox"
