@@ -17,7 +17,7 @@ const App = () => {
   const [toDoList, setToDoList] = useState<Array<Todo>>([]);
   const isDesktop = useMediaQuery(rawMq.tabLand);
   const appContainer = useRef<HTMLDivElement>(null);
-  const toDoListInProgess = toDoList.filter((task: Todo) => !task.complete);
+  const toDoListInProgress = toDoList.filter((task: Todo) => !task.complete);
   const toDoListCompleted = toDoList.filter((task: Todo) => task.complete);
   const { showModal, hideModal } = React.useContext(ModalContext);
 
@@ -51,9 +51,11 @@ const App = () => {
 
   const handleComplete = (id: string) => {
     const toDoListCompletedCopy: Array<Todo> = toDoList.map((task: Todo) => {
+      
       if (task.id === id) {
         return { ...task, complete: true };
       }
+
       return task;
     });
 
@@ -95,11 +97,11 @@ const App = () => {
           <div className="list">
             <p className="list-title">
               <span className="u-margin-right-small">In progress</span>
-              <span className="counter-circle">{toDoListInProgess.length}</span>
+              <span className="counter-circle">{toDoListInProgress.length}</span>
             </p>
 
             <ToDoList
-              toDoList={toDoListInProgess}
+              toDoList={toDoListInProgress}
               handleComplete={handleComplete}
               handleDelete={handleDelete}
             />
@@ -117,7 +119,14 @@ const App = () => {
             />
           </div>
 
-          {isDesktop ? <Sidebar toDoListLength={toDoList.length} toDoListCompletedLength={toDoListCompleted.length} /> : <ToolbarMobile />}
+          {isDesktop ? (
+            <Sidebar
+              toDoListLength={toDoList.length}
+              toDoListCompletedLength={toDoListCompleted.length}
+            />
+          ) : (
+            <ToolbarMobile />
+          )}
           <ModalRoot />
         </main>
       </div>

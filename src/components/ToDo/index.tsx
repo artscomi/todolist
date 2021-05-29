@@ -46,7 +46,9 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
       <input
         id={`checkbox_${todo.id}`}
         type="checkbox"
-        onClick={() => isDesktop && handleComplete && handleComplete(todo.id)}
+        onClick={() => {
+          isDesktop && handleComplete && handleComplete(todo.id);
+        }}
         className={`checkbox ${todo.complete ? "checkbox--checked" : ""}`}
       />
 

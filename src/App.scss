@@ -84,6 +84,7 @@
     &--done {
       text-decoration: line-through;
       color: $color-tertiary;
+      cursor: default;
     }
   }
 }
@@ -139,6 +140,7 @@
     background: $color-success url("../src/images/checked.svg") no-repeat center
       center;
     background-size: 12px;
+    cursor: default;
     &:hover {
       background-color: $color-success;
     }
