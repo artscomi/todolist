@@ -39,7 +39,7 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
           <label id="my-modal-label" className="new-task__label">
             New task
           </label>
-          <button onClick={hideModal}>
+          <button aria-label="Close modal" onClick={hideModal}>
             <Plus className="icon-rotate" />
           </button>
         </div>
