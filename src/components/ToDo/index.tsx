@@ -37,7 +37,6 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
   return (
     <li
       tabIndex={0}
-      role="button"
       className="list-item list-item--list"
       onClick={() => !isDesktop && showModalDeleteOrComplete()}
       onKeyDown={(e) =>
@@ -45,7 +44,7 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
       }
     >
       <input
-        id="checkbox_id"
+        id={`checkbox_${todo.id}`}
         type="checkbox"
         onClick={() => isDesktop && handleComplete && handleComplete(todo.id)}
         className={`checkbox ${todo.complete ? "checkbox--checked" : ""}`}
@@ -54,7 +53,7 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
       <PriorityCircle task={todo} />
 
       <label
-        htmlFor="checkbox_id"
+        htmlFor={`checkbox_${todo.id}`}
         className={`list-item__label ${
           todo.complete ? "list-item__label--done" : ""
         }`}
@@ -73,6 +72,7 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
             document.activeElement instanceof HTMLElement &&
               document.activeElement.blur();
           }}
+          aria-label="Delete task"
           className="list-item__trash"
         >
           <Trash />
