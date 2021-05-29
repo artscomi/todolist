@@ -33,7 +33,9 @@ const ModalDeleteOrComplete: React.FC<Props> = ({
             <div className="new-task__header">
               <div className="flex flex-align-center">
                 <PriorityCircle task={todo} />
-                <h2 id="my-modal-label" className="new-task__label">Task</h2>
+                <h2 id="my-modal-label" className="new-task__label">
+                  Task
+                </h2>
               </div>
               <button aria-label="Close modal" onClick={hideModal}>
                 <Plus className="icon-rotate" />
@@ -50,12 +52,14 @@ const ModalDeleteOrComplete: React.FC<Props> = ({
                 >
                   <Trash />
                 </button>
-                <button
-                  onClick={() => handleComplete && handleComplete(todo.id)}
-                  className="button button--complete"
-                >
-                  Complete
-                </button>
+                {!todo.complete && (
+                  <button
+                    onClick={() => handleComplete && handleComplete(todo.id)}
+                    className="button button--complete"
+                  >
+                    Complete
+                  </button>
+                )}
               </div>
             </div>
           </div>
