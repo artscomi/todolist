@@ -64,7 +64,11 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
           onKeyDown={(e) => {
             e.key === "Enter" && handleDelete && handleDelete(todo.id);
           }}
-          onClick={() => handleDelete && handleDelete(todo.id)}
+          onClick={() => {
+            handleDelete && handleDelete(todo.id);
+            document.activeElement instanceof HTMLElement &&
+              document.activeElement.blur();
+          }}
           className="list-item__trash"
         >
           <Trash />
