@@ -117,7 +117,7 @@ const App = () => {
             />
           </div>
 
-          {isDesktop ? <Sidebar /> : <ToolbarMobile />}
+          {isDesktop ? <Sidebar toDoListLength={toDoList.length} toDoListCompletedLength={toDoListCompleted.length} /> : <ToolbarMobile />}
           <ModalRoot />
         </main>
       </div>
