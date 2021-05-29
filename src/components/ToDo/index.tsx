@@ -37,8 +37,12 @@ const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
   return (
     <li
       tabIndex={0}
+      role="button"
       className="list-item list-item--list"
       onClick={() => !isDesktop && showModalDeleteOrComplete()}
+      onKeyDown={(e) =>
+        e.key === "Enter" && !isDesktop && showModalDeleteOrComplete()
+      }
     >
       <input
         id="checkbox_id"

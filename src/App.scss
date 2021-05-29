@@ -37,13 +37,13 @@
     font-weight: 500;
     margin-bottom: 4rem;
     justify-content: center;
+    width: 100%;
   }
 
   &--list {
     font-size: 1.4rem;
     margin-bottom: 1rem;
     transition: background-image 1s ease;
-    display: flex;
 
     @include respond(tab-land) {
       max-width: 80rem;
@@ -218,14 +218,14 @@
 .new-task {
   &__input-wrapper {
     position: relative;
-    height: 200px;
+    min-height: 20rem;
     display: flex;
     flex-direction: column;
     padding: 2rem 2.5rem 3rem;
 
     @include respond(tab-land) {
       display: block;
-      height: auto;
+      min-height: 0;
       padding: 0;
       max-width: 80rem;
     }
@@ -266,7 +266,6 @@
     background-color: $color-primary-dark;
     border: 0;
     color: $color-white;
-    padding-bottom: 10rem;
     font-size: 1.8rem;
 
     &::placeholder {
@@ -297,6 +296,7 @@
   &__name {
     font-size: 1.8rem;
     line-height: 1.5;
+    padding-bottom: 2rem;
   }
 }
 

@@ -6,10 +6,10 @@ import { rawMq } from "utils/media-queries";
 
 type Props = {
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
-  closeModal?: VoidFunction;
+  hideModal?: VoidFunction;
 };
 
-const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
+const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
   const [newTask, setNewTask] = useState("");
   const [isHighPriority, setHighPriority] = useState(false);
   const isDesktop = useMediaQuery(rawMq.tabLand);
@@ -36,10 +36,12 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
         <label className="new-task__label">New task</label>
       ) : (
         <div className="new-task__header">
-          <label className="new-task__label">New task</label>
-          <div onClick={closeModal}>
+          <label id="my-modal-label" className="new-task__label">
+            New task
+          </label>
+          <button onClick={hideModal}>
             <Plus className="icon-rotate" />
-          </div>
+          </button>
         </div>
       )}
 
@@ -60,10 +62,8 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, closeModal }) => {
             />
           </div>
           <button
-            onClick={!isDesktop && newTask ? closeModal : undefined}
-            className={`button ${
-              newTask ? "button--active" : ""
-            }`}
+            onClick={!isDesktop && newTask ? hideModal : undefined}
+            className={`button ${newTask ? "button--active" : ""}`}
           >
             Add
           </button>

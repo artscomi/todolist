@@ -3,10 +3,10 @@ import React from "react";
 import NewTaskInput from "components/NewTaskInput";
 
 type Props = {
-  isOpen: boolean,
-  hideModal: VoidFunction,
+  isOpen: boolean;
+  hideModal: VoidFunction;
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
-}
+};
 
 const ModalNewTask: React.FC<Props> = ({ isOpen, hideModal, addNewTask }) => {
   return (
@@ -18,8 +18,8 @@ const ModalNewTask: React.FC<Props> = ({ isOpen, hideModal, addNewTask }) => {
           exit={{ opacity: 0 }}
           className="overlay"
         >
-          <div className="modal">
-            <NewTaskInput addNewTask={addNewTask} closeModal={hideModal} />
+          <div className="modal" role="dialog" aria-labelledby="my-modal-label">
+            <NewTaskInput addNewTask={addNewTask} hideModal={hideModal} />
           </div>
         </motion.div>
       )}

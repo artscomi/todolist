@@ -29,19 +29,18 @@ const ModalDeleteOrComplete: React.FC<Props> = ({
           exit={{ opacity: 0 }}
           className="overlay"
         >
-          <div className="modal">
+          <div className="modal" role="dialog" aria-labelledby="my-modal-label">
             <div className="new-task__header">
               <div className="flex flex-align-center">
                 <PriorityCircle task={todo} />
-                <label className="new-task__label">Task</label>
+                <h2 id="my-modal-label" className="new-task__label">Task</h2>
               </div>
-              <div onClick={hideModal}>
+              <button onClick={hideModal}>
                 <Plus className="icon-rotate" />
-              </div>
+              </button>
             </div>
 
             <div className="new-task__input-wrapper">
-              <div>{todo.priority}</div>
               <p className="new-task__name">{todo.task}</p>
               <div className="new-task__tools">
                 <button

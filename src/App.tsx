@@ -83,13 +83,13 @@ const App = () => {
           {isDesktop ? (
             <NewTaskInput addNewTask={addNewTask} />
           ) : (
-            <div
+            <button
               onClick={showModalNewTask}
               className="list-item list-item--add"
             >
               <span className="u-margin-right-small">New task</span>
               <Plus />
-            </div>
+            </button>
           )}
 
           <div className="list">
