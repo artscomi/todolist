@@ -162,10 +162,11 @@
   &__item {
     display: flex;
     align-items: center;
-    min-height: 4rem;
+    height: 5rem;
     margin-bottom: 1rem;
     padding: 1.2rem 2rem;
     border-radius: $base-radius;
+    color: $color-secondary-dark;
 
     svg {
       margin-right: 1rem;
@@ -209,9 +210,15 @@
   font-size: 0.8rem;
   line-height: 1.8;
   padding: 1rem;
+  padding: 1.2rem 2rem;
+  color: $color-secondary-dark;
 
   &__item {
     text-align: center;
+
+    &--selected {
+      color: $color-white;
+    }
   }
 }
 

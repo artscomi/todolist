@@ -6,7 +6,7 @@ import Teams from "components/Icon/Teams";
 
 const ToolbarMobile = () => (
   <footer className="toolbar">
-    <div className="toolbar__item">
+    <div className="toolbar__item toolbar__item--selected">
       <Dashboard />
       <p>Dashboard</p>
     </div>
