@@ -1,22 +1,21 @@
+.modal-overlay {
+  background-color: $color-overlay;
+  opacity: 0.9;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 
-.overlay {
-    background-color: $color-overlay;
-    opacity: 0.9;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+.modal {
+  border-radius: $base-radius;
+  background-color: $color-primary-dark;
+  margin: 10rem 3.5rem;
+
+  &__title {
+    font-size: 1.6rem;
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid $color-border;
   }
-  
-  .modal {
-    border-radius: $base-radius;
-    background-color: $color-primary-dark;
-    margin: 10rem 3.5rem;
-  
-    &__title {
-      font-size: 1.6rem;
-      padding: 2rem 2.5rem;
-      border-bottom: 1px solid $color-border;
-    }
-  }
+}

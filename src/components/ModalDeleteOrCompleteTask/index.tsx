@@ -27,7 +27,7 @@ const ModalDeleteOrComplete: React.FC<Props> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="overlay"
+          className="modal-overlay"
         >
           <div className="modal" role="dialog" aria-labelledby="my-modal-label">
             <div className="new-task__header">
