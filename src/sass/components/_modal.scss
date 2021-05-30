@@ -1,5 +1,5 @@
 .modal-overlay {
-  background-color: $color-overlay;
+  background-color: transparentize($color-overlay, .1);
   opacity: 0.9;
   position: fixed;
   top: 0;
