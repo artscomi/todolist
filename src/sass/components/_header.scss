@@ -1,0 +1,10 @@
+.header {
+  font-size: 2.4rem;
+  font-weight: 700;
+  padding-bottom: 4rem;
+
+  @include respond(tab-land) {
+    padding-bottom: 10rem;
+    color: $color-white;
+  }
+}

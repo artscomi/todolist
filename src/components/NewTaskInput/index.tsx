@@ -55,7 +55,7 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
           onChange={handleChange}
         />
         <div className="new-task__tools">
-          <div className="toggle">
+          <div className="priority-toggle">
             <PriorityToggle
               handleHighPriority={handleHighPriority}
               isHighPriority={isHighPriority}

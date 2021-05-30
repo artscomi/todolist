@@ -1,0 +1,25 @@
+.toolbar {
+    background-color: $color-primary-dark;
+    min-height: 6rem;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 0.8rem;
+    line-height: 1.8;
+    padding: 1rem;
+    padding: 1.2rem 2rem;
+    color: $color-secondary-dark;
+  
+    &__item {
+      text-align: center;
+  
+      &--selected {
+        color: $color-white;
+      }
+    }
+  }
+  

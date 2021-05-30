@@ -1,0 +1,43 @@
+
+.priority-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    @include respond(tab-land) {
+      margin-right: 3rem;
+    }
+  
+    &__bg {
+      background-color: $color-primary-darker;
+      width: 6rem;
+      height: 3.2rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+    }
+  
+    &__circle {
+      background-color: $color-tertiary;
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transform: translateX(0.4rem);
+  
+      &--active {
+        transform: translateX(calc(100% + 0.2rem));
+        background-color: $color-secondary-light;
+      }
+    }
+  
+    &__label {
+      margin-right: 1.3rem;
+      font-size: 1.2rem;
+  
+      @include respond(tab-land) {
+        margin-right: 2rem;
+      }
+    }
+  }

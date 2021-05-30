@@ -1,0 +1,21 @@
+.counter-circle {
+  border-radius: 100%;
+  color: $color-primary;
+  display: inline-flex;
+  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-secondary-light;
+  height: 2rem;
+  width: 2rem;
+}
+
+.dashboard-counter {
+  background-color: $color-white;
+  border-radius: 1rem;
+  color: $color-primary-darker;
+  font-size: 1.2rem;
+  font-weight: 400;
+  width: 4rem;
+  text-align: center;
+}

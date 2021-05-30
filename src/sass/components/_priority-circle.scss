@@ -1,0 +1,15 @@
+.priority-circle {
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+
+  &--red {
+    background-color: $color-red;
+  }
+
+  &--blue {
+    background-color: $color-tertiary;
+  }
+}

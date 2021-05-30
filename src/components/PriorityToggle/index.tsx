@@ -10,7 +10,7 @@ const PriorityToggle: React.FC<Props> = ({ handleHighPriority, isHighPriority })
 
   return (
     <div
-      className="toggle"
+      className="priority-toggle"
       role="button"
       aria-labelledby="priority-toggle-label"
       tabIndex={0}
@@ -22,15 +22,15 @@ const PriorityToggle: React.FC<Props> = ({ handleHighPriority, isHighPriority })
       onClick={() => handleHighPriority()}
     >
       <span
-        className="toggle__label"
+        className="priority-toggle__label"
         id="priority-toggle-label"
         title="High priority"
       >
         High priority
       </span>
-      <div className="toggle__bg">
+      <div className="priority-toggle__bg">
         <div
-          className={`toggle__circle ${isHighPriority && "toggle__circle--active"}`}
+          className={`priority-toggle__circle ${isHighPriority && "priority-toggle__circle--active"}`}
         />
       </div>
     </div>

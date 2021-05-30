@@ -51,7 +51,6 @@ const App = () => {
 
   const handleComplete = (id: string) => {
     const toDoListCompletedCopy: Array<Todo> = toDoList.map((task: Todo) => {
-      
       if (task.id === id) {
         return { ...task, complete: true };
       }
@@ -74,62 +73,57 @@ const App = () => {
 
   return (
     <div className="App" ref={appContainer}>
-      <div className="container">
+      <main className="container">
         {!isDesktop && (
           <header className="header">
             <h1>MyTrack</h1>
           </header>
         )}
 
-        <main>
-          {isDesktop ? (
-            <NewTaskInput addNewTask={addNewTask} />
-          ) : (
-            <button
-              onClick={showModalNewTask}
-              className="list-item list-item--add"
-            >
-              <span className="u-margin-right-small">New task</span>
-              <Plus />
-            </button>
-          )}
+        {isDesktop ? (
+          <NewTaskInput addNewTask={addNewTask} />
+        ) : (
+          <button
+            onClick={showModalNewTask}
+            className="list-item list-item--add"
+          >
+            <span className="u-margin-right-small">New task</span>
+            <Plus />
+          </button>
+        )}
 
-          <div className="list">
-            <p className="list-title">
-              <span className="u-margin-right-small">In progress</span>
-              <span className="counter-circle">{toDoListInProgress.length}</span>
-            </p>
+        <div className="list">
+          <p className="list-title">
+            <span className="u-margin-right-small">In progress</span>
+            <span className="counter-circle">{toDoListInProgress.length}</span>
+          </p>
 
-            <ToDoList
-              toDoList={toDoListInProgress}
-              handleComplete={handleComplete}
-              handleDelete={handleDelete}
-            />
-          </div>
+          <ToDoList
+            toDoList={toDoListInProgress}
+            handleComplete={handleComplete}
+            handleDelete={handleDelete}
+          />
+        </div>
 
-          <div className="list">
-            <p className="list-title">
-              <span className="u-margin-right-small">Done</span>
-              <span className="counter-circle">{toDoListCompleted.length}</span>
-            </p>
+        <div className="list">
+          <p className="list-title">
+            <span className="u-margin-right-small">Done</span>
+            <span className="counter-circle">{toDoListCompleted.length}</span>
+          </p>
 
-            <ToDoList
-              toDoList={toDoListCompleted}
-              handleDelete={handleDelete}
-            />
-          </div>
+          <ToDoList toDoList={toDoListCompleted} handleDelete={handleDelete} />
+        </div>
 
-          {isDesktop ? (
-            <Sidebar
-              toDoListLength={toDoList.length}
-              toDoListCompletedLength={toDoListCompleted.length}
-            />
-          ) : (
-            <ToolbarMobile />
-          )}
-          <ModalRoot />
-        </main>
-      </div>
+        {isDesktop ? (
+          <Sidebar
+            toDoListLength={toDoList.length}
+            toDoListCompletedLength={toDoListCompleted.length}
+          />
+        ) : (
+          <ToolbarMobile />
+        )}
+        <ModalRoot />
+      </main>
     </div>
   );
 };

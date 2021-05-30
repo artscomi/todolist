@@ -1,0 +1,86 @@
+.new-task {
+    &__input-wrapper {
+      position: relative;
+      min-height: 20rem;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 2.5rem 3rem;
+  
+      @include respond(tab-land) {
+        display: block;
+        min-height: 0;
+        padding: 0;
+        max-width: 80rem;
+      }
+    }
+  
+    &__tools {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+  
+      @include respond(tab-land) {
+        height: auto;
+        position: absolute;
+        right: 3rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  
+    &__header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid $color-border;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    &__label {
+      display: block;
+      font-size: 1.6rem;
+  
+      @include respond(tab-land) {
+        padding-bottom: 1rem;
+      }
+    }
+  
+    &__input {
+      background-color: $color-primary-dark;
+      border: 0;
+      color: $color-white;
+      font-size: 1.8rem;
+      font-weight: 500;
+  
+      &::placeholder {
+        color: $color-tertiary;
+        font-size: 1.8rem;
+  
+        @include respond(tab-land) {
+          font-size: 1.6rem;
+        }
+      }
+  
+      @include respond(tab-land) {
+        border-radius: $base-radius;
+        min-height: 6rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        height: 4rem;
+        width: 100%;
+        margin-bottom: 4rem;
+        height: auto;
+        font-size: 1.6rem;
+        padding-right: 40rem;
+      }
+    }
+  
+    &__name {
+      font-size: 1.8rem;
+      line-height: 1.5;
+      padding-bottom: 2rem;
+      font-weight: 500;
+    }
+  }
+  

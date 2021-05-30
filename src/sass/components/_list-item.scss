@@ -1,0 +1,71 @@
+.list {
+  padding-bottom: 3rem;
+}
+
+.list-title {
+  padding-bottom: 1.5rem;
+}
+
+.list-item {
+  border-radius: $base-radius;
+  background-color: $color-primary-dark;
+  min-height: 6rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+
+  &--add {
+    margin-bottom: 4rem;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &--list {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    transition: background-image 1s ease;
+
+    @include respond(tab-land) {
+      max-width: 80rem;
+      font-size: 1.6rem;
+
+      &:hover {
+        .list-item__trash {
+          opacity: 1;
+        }
+      }
+
+      .list-item__trash {
+        transition: opacity 0.3s ease;
+        opacity: 0;
+      }
+    }
+  }
+
+  &__trash {
+    align-self: center;
+    margin-left: auto;
+    background-size: 16 30px;
+    width: 1.6rem;
+    overflow: visible;
+    cursor: pointer;
+    margin-right: 2rem;
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &__label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+    &--done {
+      text-decoration: line-through;
+      color: $color-tertiary;
+      cursor: default;
+    }
+  }
+}
