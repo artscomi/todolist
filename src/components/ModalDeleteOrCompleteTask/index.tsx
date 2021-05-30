@@ -29,7 +29,7 @@ const ModalDeleteOrComplete: React.FC<Props> = ({
           exit={{ opacity: 0 }}
           className="modal-overlay"
         >
-          <div className="modal" role="dialog" aria-labelledby="my-modal-label">
+          <div className="modal modal--center" role="dialog" aria-labelledby="my-modal-label">
             <div className="new-task__header">
               <div className="flex flex-align-center">
                 <PriorityCircle task={todo} />

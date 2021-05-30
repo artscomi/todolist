@@ -18,7 +18,7 @@ const ModalNewTask: React.FC<Props> = ({ isOpen, hideModal, addNewTask }) => {
           exit={{ opacity: 0 }}
           className="modal-overlay"
         >
-          <div className="modal" role="dialog" aria-labelledby="my-modal-label">
+          <div className="modal modal--top" role="dialog" aria-labelledby="my-modal-label">
             <NewTaskInput addNewTask={addNewTask} hideModal={hideModal} />
           </div>
         </motion.div>
