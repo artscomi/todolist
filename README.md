@@ -13,7 +13,8 @@ This react application is responsive and give the user the possibility to:
 
 :candy:  Delete a task
 
-![todolis![todolist](https://user-images.githubusercontent.com/59236081/222275482-042c3bd5-986a-49b5-9f1a-a1e9a43ff667.png)
+![todolist](https://user-images.githubusercontent.com/59236081/222275560-504bcf41-0384-43ec-8c7e-f46ce0312443.png)
+
 
 ## Available Scripts
 
