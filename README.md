@@ -1,13 +1,17 @@
-# :candy:  React Todo List
+# :candy: React Todo List 
 
 This project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 This react application is responsive and give the user the possibility to:
 
-* Create a task that includes text and an optional "high priority" property
-* Display tasks with higher priority at the top of the list
-* Mark a task as complete
-* Delete a task
+:candy:  Create a task that includes text and an optional "high priority" property
+
+:candy:  Display tasks with higher priority at the top of the list
+
+
+:candy:  Mark a task as complete
+
+:candy:  Delete a task
 
 ![todolist](https://user-images.githubusercontent.com/59236081/222271633-bb69378e-c7a1-4397-8ae8-be6c11aad0b6.png)
 
