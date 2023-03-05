@@ -20,33 +20,23 @@ type Props = {
 };
 
 const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
+  const handleShowModal = () => {
+    showModal(
+      <ModalDeleteOrComplete
+        todo={todo}
+        handleComplete={handleComplete}
+        handleDelete={handleDelete}
+      />
+    );
+  };
   const isDesktop = useMediaQuery(rawMq.tabLand);
   const { showModal } = useContext(ModalContext);
   return (
     <li
       tabIndex={0}
       className="list-item list-item--list"
-      onClick={() =>
-        !isDesktop &&
-        showModal(
-          <ModalDeleteOrComplete
-            todo={todo}
-            handleComplete={handleComplete}
-            handleDelete={handleDelete}
-          />
-        )
-      }
-      onKeyDown={(e) =>
-        e.key === "Enter" &&
-        !isDesktop &&
-        showModal(
-          <ModalDeleteOrComplete
-            todo={todo}
-            handleComplete={handleComplete}
-            handleDelete={handleDelete}
-          />
-        )
-      }
+      onClick={() => !isDesktop && handleShowModal()}
+      onKeyDown={(e) => e.key === "Enter" && !isDesktop && handleShowModal()}
     >
       <input
         id={`checkbox_${todo.id}`}
