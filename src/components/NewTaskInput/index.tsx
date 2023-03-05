@@ -20,6 +20,7 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
     }
     setNewTask("");
     setHighPriority(false);
+    hideModal && hideModal();
   };
 
   const handleHighPriority = () => {
@@ -31,7 +32,11 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
   };
 
   return (
-    <form className="new-task" onSubmit={handleSubmit}>
+    <form
+      className="new-task"
+      onSubmit={handleSubmit}
+      onClick={(e) => e.stopPropagation()}
+    >
       {isDesktop ? (
         <label className="new-task__label">New task</label>
       ) : (
@@ -62,8 +67,10 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
             />
           </div>
           <button
-            onClick={!isDesktop && newTask ? hideModal : undefined}
-            className={`button button--add-task ${newTask ? "button--active" : ""}`}
+            type="submit"
+            className={`button button--add-task ${
+              newTask ? "button--active" : ""
+            }`}
           >
             Add
           </button>

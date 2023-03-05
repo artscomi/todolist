@@ -1,8 +1,8 @@
+import { ModalProvider } from "context/modalContext";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ModalProvider } from "react-multi-modal";
 
 ReactDOM.render(
   <React.StrictMode>

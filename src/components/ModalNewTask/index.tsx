@@ -1,30 +1,14 @@
-import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { useContext } from "react";
 import NewTaskInput from "components/NewTaskInput";
+import { ModalContext } from "context/modalContext";
 
 type Props = {
-  isOpen: boolean;
-  hideModal: VoidFunction;
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
 };
 
-const ModalNewTask: React.FC<Props> = ({ isOpen, hideModal, addNewTask }) => {
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="modal-overlay"
-        >
-          <div className="modal modal--top" role="dialog" aria-labelledby="my-modal-label">
-            <NewTaskInput addNewTask={addNewTask} hideModal={hideModal} />
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+const ModalNewTask: React.FC<Props> = ({ addNewTask }) => {
+  const { hideModal } = useContext(ModalContext);
+  return <NewTaskInput addNewTask={addNewTask} hideModal={hideModal} />;
 };
 
 export default ModalNewTask;

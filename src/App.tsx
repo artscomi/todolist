@@ -5,13 +5,12 @@ import Sidebar from "./components/Sidebar";
 import useMediaQuery from "hooks/useMediaQueries";
 import useKeyboardOrMouseEvent from "hooks/useKeyboardOrMouseEvent";
 import NewTaskInput from "components/NewTaskInput";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import ToDoList from "components/ToDoList";
 import { Todo } from "components/ToDo";
-import { ModalContext, ModalRoot } from "react-multi-modal";
-import React from "react";
 import ModalNewTask from "components/ModalNewTask";
 import { rawMq } from "utils/media-queries";
+import { ModalContext } from "context/modalContext";
 
 const App = () => {
   const [toDoList, setToDoList] = useState<Array<Todo>>([]);
@@ -19,18 +18,8 @@ const App = () => {
   const appContainer = useRef<HTMLDivElement>(null);
   const toDoListInProgress = toDoList.filter((task: Todo) => !task.complete);
   const toDoListCompleted = toDoList.filter((task: Todo) => task.complete);
-  const { showModal, hideModal } = React.useContext(ModalContext);
-
   useKeyboardOrMouseEvent(appContainer);
-
-  const showModalNewTask = () => {
-    showModal({
-      component: ModalNewTask,
-      modalProps: {
-        addNewTask,
-      },
-    });
-  };
+  const { hideModal, showModal } = useContext(ModalContext);
 
   const addNewTask = (newTask: string, highPriority: boolean) => {
     const toDoListCopy: Array<Todo> = [
@@ -84,7 +73,7 @@ const App = () => {
           <NewTaskInput addNewTask={addNewTask} />
         ) : (
           <button
-            onClick={showModalNewTask}
+            onClick={() => showModal(<ModalNewTask addNewTask={addNewTask} />)}
             className="list-item list-item--add"
           >
             <span className="u-margin-right-small">New task</span>
@@ -122,7 +111,6 @@ const App = () => {
         ) : (
           <ToolbarMobile />
         )}
-        <ModalRoot />
       </main>
     </div>
   );

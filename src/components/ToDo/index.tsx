@@ -1,10 +1,10 @@
 import Trash from "components/Icon/Trash";
 import useMediaQuery from "hooks/useMediaQueries";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { rawMq } from "utils/media-queries";
-import { ModalContext } from "react-multi-modal";
 import ModalDeleteOrComplete from "components/ModalDeleteOrCompleteTask";
 import PriorityCircle from "components/PriorityCircle";
+import { ModalContext } from "context/modalContext";
 
 export type Todo = {
   id: string;
@@ -21,26 +21,31 @@ type Props = {
 
 const ToDo: React.FC<Props> = ({ todo, handleComplete, handleDelete }) => {
   const isDesktop = useMediaQuery(rawMq.tabLand);
-  const { showModal } = React.useContext(ModalContext);
-
-  const showModalDeleteOrComplete = () => {
-    showModal({
-      component: ModalDeleteOrComplete,
-      modalProps: {
-        todo,
-        handleComplete,
-        handleDelete,
-      },
-    });
-  };
-
+  const { showModal } = useContext(ModalContext);
   return (
     <li
       tabIndex={0}
       className="list-item list-item--list"
-      onClick={() => !isDesktop && showModalDeleteOrComplete()}
+      onClick={() =>
+        !isDesktop &&
+        showModal(
+          <ModalDeleteOrComplete
+            todo={todo}
+            handleComplete={handleComplete}
+            handleDelete={handleDelete}
+          />
+        )
+      }
       onKeyDown={(e) =>
-        e.key === "Enter" && !isDesktop && showModalDeleteOrComplete()
+        e.key === "Enter" &&
+        !isDesktop &&
+        showModal(
+          <ModalDeleteOrComplete
+            todo={todo}
+            handleComplete={handleComplete}
+            handleDelete={handleDelete}
+          />
+        )
       }
     >
       <input
