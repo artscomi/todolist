@@ -5,7 +5,7 @@ import Dashboard from "components/Icon/Dashboard";
 import Settings from "components/Icon/Settings";
 import Teams from "components/Icon/Teams";
 
-const sidebarItems = [
+export const sidebarItems = [
   { icon: <Dashboard />, label: "Dashboard", id: 1 },
   { icon: <Calendar />, label: "Calendar", id: 2 },
   { icon: <Teams />, label: "Teams", id: 3 },

@@ -19,13 +19,11 @@
       padding: 1.2rem 2rem;
       border-radius: $base-radius;
       color: $color-secondary-dark;
+      cursor: pointer;
+      justify-content: space-between;
   
       svg {
         margin-right: 1rem;
-      }
-  
-      &--dashboard {
-        justify-content: space-between;
       }
   
       &--selected {
@@ -33,7 +31,7 @@
         color: $color-white;
       }
   
-      &--last {
+      &:last-of-type {
         margin-top: auto;
       }
     }
