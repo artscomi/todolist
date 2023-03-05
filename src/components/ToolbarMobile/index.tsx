@@ -18,7 +18,6 @@ const ToolbarMobile = () => {
 
   const handleItemClick = (index: number) => {
     setSelectedIndex(index);
-    // do something else when an item is clicked, such as navigating to a different page
   };
 
   return (
