@@ -1,32 +1,42 @@
+import { useState } from "react";
 import Calendar from "components/Icon/Calendar";
 import Charts from "components/Icon/Charts";
 import Dashboard from "components/Icon/Dashboard";
 import Settings from "components/Icon/Settings";
 import Teams from "components/Icon/Teams";
 
-const ToolbarMobile = () => (
-  <footer className="toolbar">
-    <div className="toolbar__item toolbar__item--selected">
-      <Dashboard />
-      <p>Dashboard</p>
-    </div>
-    <div className="toolbar__item">
-      <Calendar />
-      <p>Calendar</p>
-    </div>
-    <div className="toolbar__item">
-      <Teams />
-      <p>Teams</p>
-    </div>
-    <div className="toolbar__item">
-      <Charts />
-      <p>Charts</p>
-    </div>
-    <div className="toolbar__item">
-      <Settings />
-      <p>Settings</p>
-    </div>
-  </footer>
-);
+const sidebarItems = [
+  { icon: <Dashboard />, label: "Dashboard", id: 1 },
+  { icon: <Calendar />, label: "Calendar", id: 2 },
+  { icon: <Teams />, label: "Teams", id: 3 },
+  { icon: <Charts />, label: "Charts", id: 4 },
+  { icon: <Settings />, label: "Settings", id: 5 },
+];
+
+const ToolbarMobile = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleItemClick = (index: number) => {
+    setSelectedIndex(index);
+    // do something else when an item is clicked, such as navigating to a different page
+  };
+
+  return (
+    <footer className="toolbar">
+      {sidebarItems.map((item, index) => (
+        <button
+          key={item.id}
+          className={`toolbar__item ${
+            index === selectedIndex ? "toolbar__item--selected" : ""
+          }`}
+          onClick={() => handleItemClick(index)}
+        >
+          {item.icon}
+          <p>{item.label}</p>
+        </button>
+      ))}
+    </footer>
+  );
+};
 
 export default ToolbarMobile;
