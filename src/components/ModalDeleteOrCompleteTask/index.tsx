@@ -2,7 +2,7 @@ import Plus from "components/Icon/Plus";
 import Trash from "components/Icon/Trash";
 import PriorityCircle from "components/PriorityCircle";
 import { Todo } from "components/ToDo";
-import { ModalContext } from "context/modalContext";
+import { ModalContext } from "context/ModalContext";
 import React, { useContext } from "react";
 
 type Props = {

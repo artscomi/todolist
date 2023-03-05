@@ -1,4 +1,4 @@
-import { ModalProvider } from "context/modalContext";
+import { ModalProvider } from "context/ModalContext";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";

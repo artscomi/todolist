@@ -9,7 +9,7 @@ type Props = {
   hideModal?: VoidFunction;
 };
 
-const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
+const NewTaskForm: React.FC<Props> = ({ addNewTask, hideModal }) => {
   const [newTask, setNewTask] = useState("");
   const [isHighPriority, setHighPriority] = useState(false);
   const isDesktop = useMediaQuery(rawMq.tabLand);
@@ -80,4 +80,4 @@ const NewTaskInput: React.FC<Props> = ({ addNewTask, hideModal }) => {
   );
 };
 
-export default NewTaskInput;
+export default NewTaskForm;

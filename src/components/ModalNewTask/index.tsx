@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import NewTaskInput from "components/NewTaskInput";
-import { ModalContext } from "context/modalContext";
+import NewTaskForm from "components/NewTaskForm";
+import { ModalContext } from "context/ModalContext";
 
 type Props = {
   addNewTask: (newTask: string, isHighPriority: boolean) => void;
@@ -8,7 +8,7 @@ type Props = {
 
 const ModalNewTask: React.FC<Props> = ({ addNewTask }) => {
   const { hideModal } = useContext(ModalContext);
-  return <NewTaskInput addNewTask={addNewTask} hideModal={hideModal} />;
+  return <NewTaskForm addNewTask={addNewTask} hideModal={hideModal} />;
 };
 
 export default ModalNewTask;

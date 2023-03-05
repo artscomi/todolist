@@ -1,10 +1,10 @@
 import Trash from "components/Icon/Trash";
 import useMediaQuery from "hooks/useMediaQueries";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { rawMq } from "utils/media-queries";
 import ModalDeleteOrComplete from "components/ModalDeleteOrCompleteTask";
 import PriorityCircle from "components/PriorityCircle";
-import { ModalContext } from "context/modalContext";
+import { ModalContext } from "context/ModalContext";
 
 export type Todo = {
   id: string;

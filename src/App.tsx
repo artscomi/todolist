@@ -4,13 +4,13 @@ import ToolbarMobile from "./components/ToolbarMobile";
 import Sidebar from "./components/Sidebar";
 import useMediaQuery from "hooks/useMediaQueries";
 import useKeyboardOrMouseEvent from "hooks/useKeyboardOrMouseEvent";
-import NewTaskInput from "components/NewTaskInput";
+import NewTaskForm from "components/NewTaskForm";
 import { useContext, useRef, useState } from "react";
 import ToDoList from "components/ToDoList";
 import { Todo } from "components/ToDo";
 import ModalNewTask from "components/ModalNewTask";
 import { rawMq } from "utils/media-queries";
-import { ModalContext } from "context/modalContext";
+import { ModalContext } from "context/ModalContext";
 
 const App = () => {
   const [toDoList, setToDoList] = useState<Array<Todo>>([]);
@@ -70,7 +70,7 @@ const App = () => {
         )}
 
         {isDesktop ? (
-          <NewTaskInput addNewTask={addNewTask} />
+          <NewTaskForm addNewTask={addNewTask} />
         ) : (
           <button
             onClick={() => showModal(<ModalNewTask addNewTask={addNewTask} />)}

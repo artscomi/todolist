@@ -1,23 +1,22 @@
+import { ModalContext } from "context/ModalContext";
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { useContext } from "react";
 
 type Props = {
-  onClose: VoidFunction;
-  isOpen: boolean;
-//   addNewTask: (newTask: string, isHighPriority: boolean) => void;
   children: React.ReactNode;
 };
 
-const ModalNewTask: React.FC<Props> = ({ isOpen, children, onClose }) => {
+const ModalNewTask: React.FC<Props> = ({ children }) => {
+  const { isModalOpen, hideModal } = useContext(ModalContext);
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isModalOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="modal-overlay"
-          onClick={onClose}
+          onClick={hideModal}
         >
           <div
             className="modal modal--top"

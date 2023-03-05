@@ -4,13 +4,13 @@ import { createContext, useCallback, useMemo, useState } from "react";
 interface ModalContextType {
   showModal: (content: React.ReactNode) => void;
   hideModal: () => void;
-  isModalOpen: boolean
+  isModalOpen: boolean;
 }
 
 export const ModalContext = createContext<ModalContextType>({
   showModal: () => {},
   hideModal: () => {},
-  isModalOpen: false
+  isModalOpen: false,
 });
 
 interface ModalProviderProps {
@@ -38,11 +38,7 @@ export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   return (
     <ModalContext.Provider value={contextValue}>
       {children}
-      {isModalOpen && (
-        <Modal onClose={hideModal} isOpen={isModalOpen}>
-          {modalContent}
-        </Modal>
-      )}
+      {isModalOpen && <Modal>{modalContent}</Modal>}
     </ModalContext.Provider>
   );
 };
