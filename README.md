@@ -2,12 +2,11 @@
 
 This project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This react application is responsive and give the user the possibility to:
+This React application is designed to be responsive and allows users to:
 
-:candy:  Create a task that includes text and an optional "high priority" property
+:candy:  Create tasks that include text and an optional "high priority" property
 
-:candy:  Display tasks with higher priority at the top of the list
-
+:candy:  Display tasks with higher priority at the top of the list for easy access
 
 :candy:  Mark a task as complete
 
