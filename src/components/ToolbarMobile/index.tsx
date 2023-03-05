@@ -25,6 +25,7 @@ const ToolbarMobile = () => {
     <footer className="toolbar">
       {sidebarItems.map((item, index) => (
         <button
+          aria-label={item.label}
           key={item.id}
           className={`toolbar__item ${
             index === selectedIndex ? "toolbar__item--selected" : ""
